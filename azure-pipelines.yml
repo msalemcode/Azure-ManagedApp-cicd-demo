@@ -1,0 +1,95 @@
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+  
+
+variables:
+- group: amaSecrets
+
+stages:
+- stage: build
+  displayName: 'Build & Publish'
+  jobs:
+  - job:
+    steps:
+      - task: PublishSymbols@2
+        displayName: 'Publish symbols path'
+        inputs:
+          SearchPattern: '**\bin\**\*.pdb'
+          PublishSymbols: false
+          continueOnError: true
+        
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet Build'
+        inputs:
+          command: 'build'
+          projects: '**/*.csproj'
+        
+     
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet publish'
+        inputs:
+          command: 'publish'
+          publishWebProjects: true
+          zipAfterPublish: true
+          arguments: '--output $(Build.ArtifactStagingDirectory)'
+          projects: '**/*.csproj'
+
+      - task: CmdLine@2
+        inputs:
+          script: 'copy subscriptionList.txt $(Build.ArtifactStagingDirectory)'
+
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish Artifact'
+        inputs:
+          PathtoPublish: '$(build.artifactstagingdirectory)'
+          ArtifactName: 'webpackage'
+
+
+- stage: UpdateManagedApp
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  displayName: 'Update Customer Managed App'
+  jobs:
+   - deployment: UpdateManagedApp
+     environment: UpdateManagedApp
+     strategy:
+      runOnce:
+        deploy:
+          steps:
+            - task: Bash@3
+              inputs:
+                targetType: 'inline'
+                script: |
+                      echo "Opening customer subscriptions List"
+                      while IFS= read -r subscription
+                       do
+                          echo "Process Customer Subscription: $subscription"
+                          az login --service-principal -u $(CLIENTID) -p $(CLIENTSECRET) --tenant $(TENANT)
+                          echo "=================================================================================="
+                          echo "Get Managed ResourceGroup"
+                          echo "=================================================================================="
+                          managedResourceGroupId=$(az managedapp list --subscription $subscription --query "[?contains(plan.product,'msalemdummymanagedoffer-preview')]"|grep managedResourceGroupId)
+                          managedResourceGroupId=$(awk -F'/' '{print $5}' <<< $managedResourceGroupId)
+                          managedResourceGroupId=$(awk '{ print substr( $0, 1, length($0)-2 ) }' <<< $managedResourceGroupId)
+                          echo $managedResourceGroupId
+                          echo "=================================================================================="
+                          echo " Get App Name "
+                          echo "=================================================================================="
+                          webAppName=$(az managedapp list --subscription $subscription  --query "[?contains(plan.product,'msalemdummymanagedoffer-preview')]"|grep  -A2 'webAppName' |grep 'value')
+                          webAppName=$(awk -F ':' '{print $2}' <<< $webAppName)
+                          webAppName=$(echo $webAppName | cut -d '"' -f 2)
+                          echo $webAppName 
+                          echo "=================================================================================="
+                          echo " Push new artifact to webapp "
+                          echo "=================================================================================="
+                          az webapp config appsettings set --subscription $subscription  -g $managedResourceGroupId --name  $webAppName --setting WEBSITE_RUN_FROM_PACKAGE=1
+                          az webapp deployment source config-zip --name  $webAppName --subscription $subscription  -g $managedResourceGroupId --src ../webpackage/src.zip
+                        done < ../webpackage/subscriptionList.txt
+                        echo "Finished updating customer subscriptions"
+
+
+                
+                    

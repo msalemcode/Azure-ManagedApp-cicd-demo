@@ -1,0 +1,29 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
+    "handler": "Microsoft.Azure.CreateUIDef",
+    "version": "0.1.2-preview",
+    "parameters": {
+        "basics": [],
+        "steps": [
+
+            {
+                "name": "webBlade",
+                "label": "Web",
+                "bladeTitle": "Web Settings",
+                "elements": [
+                    {
+                        "name": "webname",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Web name prefix",
+                        "toolTip":"web  name prefix",
+                        "visible": true
+                    }
+                ]
+            }
+        ],
+        "outputs": {
+            "location": "[location()]",
+            "webAppName": "[steps('webBlade').webname]"
+        }
+    }
+}
