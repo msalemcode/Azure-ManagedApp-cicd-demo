@@ -7,7 +7,7 @@ The demo requirement knoweldage about
 1. Deploy managed app
 1. Create Azure pipeline
 
-# Prerquist
+# Prerequisites
 Before using the demo, the following components should exists
 1. Azure managed app offer with one plan at least
 1. AD App Registration and Its corresponding Enterprise App
