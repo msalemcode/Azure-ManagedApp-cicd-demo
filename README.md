@@ -34,7 +34,8 @@ Before using the demo, the following components should exist
 > [!NOTE]
 > It is highly recommended to use a **different tenant** for deployment to demoenstrate customer environment
 1. Deploy the managed app from marketplace, please refer to this [link](https://docs.microsoft.com/en-us/azure/marketplace/azure-app-test-publish) 
-1. Access the managed resources group and open the webapp url
+1. Access the managed resources group and open the webapp url and you should see the following webpage
+![image](./images/image0.png)
 
 
 ## Deploy modified Artifact to managed app
