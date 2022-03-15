@@ -19,7 +19,7 @@ Before using the demo, the following components should exist:
 > AAD App Registration will be used as part of the managed app plan technical configuration and also as part of Azure pipeline 
 
 ## Publish the managed app demo
-1. Find `artificats.zip` under `arm folder` and upload it to managed app plan technical configuration
+1. Find `artifacts.zip` under `arm folder` and upload it to managed app plan technical configuration
 ![image](./images/image3.png)
 1. Locate the `Object ID` for the `Enterprise App`
 ![image](./images/image1.png)
