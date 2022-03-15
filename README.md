@@ -14,13 +14,15 @@ It is highly recommended to review the following material before starting this d
 # Prerequisites
 Before using the demo, the following components should exist:
 1. Azure managed app offer with at least one plan
-1. AAD App Registration and its corresponding Enterprise App
+1. AAD App Registration
 > [!NOTE]
 > AAD App Registration will be used as part of the managed app plan technical configuration and also as part of Azure pipeline 
 
 ## Publish the managed app demo
-1. Find `artifacts.zip` under `arm folder` and upload it to managed app plan technical configuration
+1. Find `amav1.zip` under `arm folder` and upload it to managed app plan technical configuration
 ![image](./images/image3.png)
+1. Use AAD App Registration  `Client ID` to relocate its corresponding `Enterprise App`
+![image](./images/image0.png)
 1. Locate the `Object ID` for the `Enterprise App`
 ![image](./images/image1.png)
 ![image](./images/image2.png)
@@ -33,7 +35,7 @@ Before using the demo, the following components should exist:
 ## Deploy published managed app
 > [!NOTE]
 > It is highly recommended to use a **different tenant** for deployment to demonstrate customer environment
-1. Deploy the managed app from marketplace, please refer to this [link](https://docs.microsoft.com/en-us/azure/marketplace/azure-app-test-publish) 
+1. Deploy the managed app from marketplace, please refer to this [link](https://docs.microsoft.com/en-us/marketplace/purchase-azure-app-in-azure-portal#purchase-an-azure-application-using-the-marketplace-experience) 
 1. Access the managed resources group, open the webapp url and you should see the following webpage
 ![image](./images/image0.png)
 
