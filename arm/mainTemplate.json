@@ -70,8 +70,9 @@
             "imagePublisher": "Canonical"
         },
         "storageName": "[concat(parameters('storageAccountPrefix'), uniqueString(resourceGroup().id))]",
-        "appServicePlanPortalName": "[concat('AppServicePlan-', parameters('webAppName'))]",
-        "artifacts":   "[uri(deployment().properties.templateLink.uri, 'artifacts/webpackage.zip')]"
+        "artifacts":   "[uri(deployment().properties.templateLink.uri, 'artifacts/webpackage.zip')]",
+        "webAppName": "[concat(parameters('webAppName'), uniqueString(resourceGroup().id))]",
+        "appServicePlanPortalName": "[concat('AppServicePlan-', variables('webAppName'))]"
 
   
 
@@ -247,7 +248,7 @@
             "type": "Microsoft.Web/sites",
             "apiVersion": "2020-06-01",
             "kind": "app",
-            "name": "[parameters('webAppName')]",
+            "name": "[variables('webAppName')]",
             "location": "[parameters('location')]",
             "dependsOn": [
               "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanPortalName'))]"

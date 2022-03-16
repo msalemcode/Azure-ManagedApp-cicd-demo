@@ -117,10 +117,7 @@
                         "type": "Microsoft.Common.TextBox",
                         "label": "Web name prefix",
                         "toolTip":"web  name prefix",
-                        "visible": true,
-                        "constraints": {
-                            "required": true
-                        }
+                        "visible": true
                     }
                 ]
             }

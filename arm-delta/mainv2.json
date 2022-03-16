@@ -68,8 +68,9 @@
             "imagePublisher": "Canonical"
         },
         "storageName": "[concat(parameters('storageAccountPrefix'), uniqueString(resourceGroup().id))]",
-        "storageName2": "[concat(parameters('storageAccountPrefix'),'-2', uniqueString(resourceGroup().id))]",
-        "appServicePlanPortalName": "[concat('AppServicePlan-', parameters('webAppName'))]"
+        "storageName2": "[concat(parameters('storageAccountPrefix'),'2', uniqueString(resourceGroup().id))]",
+        "webAppName": "[concat(parameters('webAppName'), uniqueString(resourceGroup().id))]",
+        "appServicePlanPortalName": "[concat('AppServicePlan-', variables('webAppName'))]"
     },
     "resources": [
         {
@@ -255,7 +256,7 @@
             "type": "Microsoft.Web/sites",
             "apiVersion": "2020-06-01",
             "kind": "app",
-            "name": "[parameters('webAppName')]",
+            "name": "[variables('webAppName')]",
             "location": "[parameters('location')]",
             "dependsOn": [
               "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanPortalName'))]"
