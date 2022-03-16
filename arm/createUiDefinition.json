@@ -117,7 +117,12 @@
                         "type": "Microsoft.Common.TextBox",
                         "label": "Web name prefix",
                         "toolTip":"web  name prefix",
-                        "visible": true
+                        "visible": true,                      
+                    "constraints": {
+                        "required": true,
+                        "validationMessage": "Must be 6-8 characters.",
+                        "regex": "^[a-z0-9A-Z]{3,5}$"
+                    }
                     }
                 ]
             }
