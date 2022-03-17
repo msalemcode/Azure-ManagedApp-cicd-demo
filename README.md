@@ -36,7 +36,7 @@ Before using the demo, the following components should exist:
 > [!NOTE]
 > It is highly recommended to use a **different tenant** for deployment to demonstrate customer environment
 1. Deploy the managed app from marketplace, please refer to this [link](https://docs.microsoft.com/en-us/marketplace/purchase-azure-app-in-azure-portal#purchase-an-azure-application-using-the-marketplace-experience) 
-1. Access the managed resources group, open the webapp url and you should see the following webpage
+1. Access the managed resource group, open the webapp url under App Service and you should see the following webpage
 ![image](./images/image0.png)
 
 
@@ -44,7 +44,7 @@ Before using the demo, the following components should exist:
 1. Modify the web application source code, add extra header line or change logo
 1. Establish Azure pipeline using Azure-pipline.yaml file, please refer to this article as a guide [HOW-TO Establish Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/customize-pipeline?view=azure-devops)
 ![image](./images/image5.png)
-1. Add new azure library `amaSecrets` and add AAD app registration clientID, secret and tenants. Please refer to this article [HOW-TO add variable Group](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml)
+1. Add a variable group to azure library `amaSecrets` and add AAD app registration client ID, client secret ID and tenant ID. Please refer to this article [HOW-TO add variable Group](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml)
 ![image](./images/image6.png)
 1. Add new environment and call it UpdateManagedApp
 1. Add yourself or other AAD User as Approval for the environment, please refer to this articale [HOW-TO Create pipeline Environment](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/environments?view=azure-devops) 
