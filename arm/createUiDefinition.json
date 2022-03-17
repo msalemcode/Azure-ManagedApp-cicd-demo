@@ -121,7 +121,7 @@
                     "constraints": {
                         "required": true,
                         "validationMessage": "Must be 6-8 characters.",
-                        "regex": "^[a-z0-9A-Z]{3,5}$"
+                        "regex": "^[a-z0-9A-Z]{6,8}$"
                     }
                     }
                 ]
