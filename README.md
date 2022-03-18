@@ -37,7 +37,7 @@ Before using the demo, the following components should exist:
 > It is highly recommended to use a **different tenant** for deployment to demonstrate customer environment
 1. Deploy the managed app from marketplace, please refer to this [link](https://docs.microsoft.com/en-us/marketplace/purchase-azure-app-in-azure-portal#purchase-an-azure-application-using-the-marketplace-experience) 
 1. Access the managed resource group, open the webapp url under App Service and you should see the following webpage
-![image](./images/image8.png)
+![image](./images/image0.png)
 
 
 ## Deploy modified Artifact to managed app
@@ -51,7 +51,7 @@ Before using the demo, the following components should exist:
 ![image](./images/image7.png)
 1. Run pipeline
 1. After it finishes, access managed app webapp and confirm it was updated
-![image](./images/image9.png)
+![image](./images/image8.png)
 
 As you see the managed app reflects the new site version
 
