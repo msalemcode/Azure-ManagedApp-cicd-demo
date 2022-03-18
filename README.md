@@ -22,9 +22,8 @@ Before using the demo, the following components should exist:
 1. Find `amav1.zip` under `arm folder` and upload it to managed app plan technical configuration
 ![image](./images/image3.png)
 1. Use AAD App Registration  `Client ID` to relocate its corresponding `Enterprise App`
-![image](./images/image9.png)
-1. Locate the `Object ID` for the `Enterprise App`
 ![image](./images/image1.png)
+1. Locate the `Object ID` for the `Enterprise App`
 ![image](./images/image2.png)
 1. Enter the `objbect ID` and `AAD tenant ID`
 ![image](./images/image4.png)
